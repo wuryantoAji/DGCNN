@@ -60,7 +60,7 @@ BN_DECAY_CLIP = 0.99
 HOSTNAME = socket.gethostname()
 
 ALL_FILES = provider.getDataFiles('/home/aji/aji-skripsi/DGCNN/tensorflow/data/modelnet40_ply_hdf5_2048/all_files.txt') 
-room_filelist = [line.rstrip() for line in open('indoor3d_sem_seg_hdf5_data/room_filelist.txt')] 
+room_filelist = [line.rstrip() for line in open('/home/aji/aji-skripsi/DGCNN/tensorflow/data/modelnet40_ply_hdf5_2048/room_filelist.txt')] 
 print (len(room_filelist))
 
 # Load ALL data
