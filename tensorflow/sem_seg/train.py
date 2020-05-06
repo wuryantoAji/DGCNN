@@ -61,7 +61,7 @@ HOSTNAME = socket.gethostname()
 
 ALL_FILES = provider.getDataFiles('indoor3d_sem_seg_hdf5_data/all_files.txt') 
 room_filelist = [line.rstrip() for line in open('indoor3d_sem_seg_hdf5_data/room_filelist.txt')] 
-print len(room_filelist)
+print (len(room_filelist))
 
 # Load ALL data
 data_batch_list = []
