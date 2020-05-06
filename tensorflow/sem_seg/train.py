@@ -20,7 +20,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--num_gpu', type=int, default=2, help='the number of GPUs to use [default: 2]')
 parser.add_argument('--log_dir', default='log', help='Log dir [default: log]')
 parser.add_argument('--num_point', type=int, default=4096, help='Point number [default: 4096]')
-parser.add_argument('--max_epoch', type=int, default=101, help='Epoch to run [default: 50]')
+parser.add_argument('--max_epoch', type=int, default=51, help='Epoch to run [default: 50]')
 parser.add_argument('--batch_size', type=int, default=12, help='Batch Size during training for each GPU [default: 24]')
 parser.add_argument('--learning_rate', type=float, default=0.001, help='Initial learning rate [default: 0.001]')
 parser.add_argument('--momentum', type=float, default=0.9, help='Initial learning rate [default: 0.9]')
@@ -59,7 +59,7 @@ BN_DECAY_CLIP = 0.99
 
 HOSTNAME = socket.gethostname()
 
-ALL_FILES = provider.getDataFiles('indoor3d_sem_seg_hdf5_data/all_files.txt') 
+ALL_FILES = provider.getDataFiles('/home/aji/aji-skripsi/DGCNN/tensorflow/data/modelnet40_ply_hdf5_2048/all_files.txt') 
 room_filelist = [line.rstrip() for line in open('indoor3d_sem_seg_hdf5_data/room_filelist.txt')] 
 print (len(room_filelist))
 
