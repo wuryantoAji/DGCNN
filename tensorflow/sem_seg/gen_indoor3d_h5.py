@@ -37,7 +37,7 @@ label_dim = [NUM_POINT]
 data_dtype = 'float32'
 label_dtype = 'uint8'
 indoor3d_data_dir = '/home/aji/aji-skripsi/data/margonda_3d'
-filelist = os.path.join(BASE_DIR, 'meta/all_data_label_dublin.txt')
+filelist = os.path.join(BASE_DIR, 'meta/all_data_label.txt')
 data_dim = [NUM_POINT, 6]
 
 
