@@ -1,0 +1,6 @@
+Area_1/Annotations
+Area_2/Annotations
+Area_3/Annotations
+Area_4/Annotations
+Area_5/Annotations
+Area_6/Annotations

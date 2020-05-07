@@ -1,0 +1,6 @@
+margonda_3d_Area_1.npy
+margonda_3d_Area_2.npy
+margonda_3d_Area_3.npy
+margonda_3d_Area_4.npy
+margonda_3d_Area_5.npy
+margonda_3d_Area_6.npy
