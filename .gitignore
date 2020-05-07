@@ -3,3 +3,5 @@ log/
 *.pyc
 .DS_Store
 tensorflow/sem_seg/indoor3d_sem_seg_hdf5_data
+tensorflow/sem_seg/log*
+tensorflow/sem_seg/nohup.out
