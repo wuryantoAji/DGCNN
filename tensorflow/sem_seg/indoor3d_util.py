@@ -2,6 +2,8 @@ import numpy as np
 import glob
 import os
 import sys
+import time
+import json
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(BASE_DIR)
 sys.path.append(BASE_DIR)
@@ -10,31 +12,54 @@ sys.path.append(BASE_DIR)
 # CONSTANTS
 # -----------------------------------------------------------------------------
 
-DATA_PATH = os.path.join(ROOT_DIR, 'data', 'Stanford3dDataset_v1.2_Aligned_Version')
+# DATA_PATH = os.path.join(ROOT_DIR, 'data', 'Stanford3dDataset_v1.2_Aligned_Version')
+
+#RGB = True
+
+#if RGB:
+#  DATA_PATH = os.path.join(ROOT_DIR, 'data', 'margonda_rgb_3d')
+#else:
+#  DATA_PATH = os.path.join(ROOT_DIR, 'data', 'margonda_3d')
+
+
+
 g_classes = [x.rstrip() for x in open(os.path.join(BASE_DIR, 'meta/class_names.txt'))]
 g_class2label = {cls: i for i,cls in enumerate(g_classes)}
-g_class2color = {'ceiling': [0,255,0],
-         'floor': [0,0,255],
-         'wall':  [0,255,255],
-         'beam':        [255,255,0],
-         'column':      [255,0,255],
-         'window':      [100,100,255],
-         'door':        [200,200,100],
-         'table':       [170,120,200],
-         'chair':       [255,0,0],
-         'sofa':        [200,100,100],
-         'bookcase':    [10,200,100],
-         'board':       [200,200,200],
-         'clutter':     [50,50,50]} 
+
+# g_class2color = {'ceiling': [0,255,0],
+#          'floor': [0,0,255],
+#          'wall':  [0,255,255],
+#          'beam':        [255,255,0],
+#          'column':      [255,0,255],
+#          'window':      [100,100,255],
+#          'door':        [200,200,100],
+#          'table':       [170,120,200],
+#          'chair':       [255,0,0],
+#          'sofa':        [200,100,100],
+#          'bookcase':    [10,200,100],
+#          'board':       [200,200,200],
+#          'clutter':     [50,50,50]} 
+g_class2color = {'nonbuilding': [0, 255, 0],
+                 'building': [0, 0, 255]}
 g_easy_view_labels = [7,8,9,10,11,1]
 g_label2color = {g_classes.index(cls): g_class2color[cls] for cls in g_classes}
 
+
+def get_data_path(rgb=False):
+  if rgb:
+    DATA_PATH = os.path.join(ROOT_DIR, 'data', 'margonda_rgb_3d')
+    return os.path.join(ROOT_DIR, 'data', 'margonda_rgb_3d')
+  else:
+    # DATA_PATH = os.path.join(ROOT_DIR, 'data', 'margonda_3d')
+    # return os.path.join(ROOT_DIR, 'data', 'margonda_3d')
+    DATA_PATH = '/home/aji/aji-skripsi/data/margonda_3d'
+    return DATA_PATH
 
 # -----------------------------------------------------------------------------
 # CONVERT ORIGINAL DATA TO OUR DATA_LABEL FILES
 # -----------------------------------------------------------------------------
 
-def collect_point_label(anno_path, out_filename, file_format='txt'):
+def collect_point_label(anno_path, out_filename, map_filename, file_format='txt'):
   """ Convert original dataset files to data_label file (each line is XYZRGBL).
     We aggregated all the points from each instance in the room.
 
@@ -52,7 +77,7 @@ def collect_point_label(anno_path, out_filename, file_format='txt'):
   for f in glob.glob(os.path.join(anno_path, '*.txt')):
     cls = os.path.basename(f).split('_')[0]
     if cls not in g_classes: # note: in some room there is 'staris' class..
-      cls = 'clutter'
+      cls = 'nonbuilding'
     points = np.loadtxt(f)
     labels = np.ones((points.shape[0],1)) * g_class2label[cls]
     points_list.append(np.concatenate([points, labels], 1)) # Nx7
@@ -60,14 +85,26 @@ def collect_point_label(anno_path, out_filename, file_format='txt'):
 
   data_label = np.concatenate(points_list, 0)
   xyz_min = np.amin(data_label, axis=0)[0:3]
+  real_data_label = np.concatenate(points_list, 0)
   data_label[:, 0:3] -= xyz_min
+
+  # Mapping original point
+  map_ori = {}
+  for i in range(data_label.shape[0]):
+    key = f'{data_label[i,0]},{data_label[i,1]},{data_label[i,2]}'
+    val = f'{real_data_label[i,0]},{real_data_label[i,1]},{real_data_label[i,2]}'
+    map_ori[key] = val
   
+  with open(map_filename, 'w+') as w:
+    json.dump(map_ori, w)
+  
+
   if file_format=='txt':
     fout = open(out_filename, 'w')
     for i in range(data_label.shape[0]):
       fout.write('%f %f %f %d %d %d %d\n' % \
               (data_label[i,0], data_label[i,1], data_label[i,2],
-               data_label[i,3], data_label[i,4], data_label[i,5],
+              #  data_label[i,3], data_label[i,4], data_label[i,5],
                data_label[i,6]))
     fout.close()
   elif file_format=='numpy':
@@ -123,7 +160,7 @@ def sample_data(data, num_sample):
   else:
     sample = np.random.choice(N, num_sample-N)
     dup_data = data[sample, ...]
-    return np.concatenate([data, dup_data], 0), range(N)+list(sample)
+    return np.concatenate([data, dup_data], 0), list(range(N))+list(sample)
 
 def sample_data_label(data, label, num_sample):
   new_data, sample_indices = sample_data(data, num_sample)
@@ -131,7 +168,7 @@ def sample_data_label(data, label, num_sample):
   return new_data, new_label
   
 def room2blocks(data, label, num_point, block_size=1.0, stride=1.0,
-        random_sample=False, sample_num=None, sample_aug=1):
+        random_sample=False, sample_num=None, sample_aug=1, rgb=False):
   """ Prepare block training data.
   Args:
     data: N x 6 numpy array, 012 are XYZ in meters, 345 are RGB in [0,1]
@@ -181,23 +218,23 @@ def room2blocks(data, label, num_point, block_size=1.0, stride=1.0,
   block_label_list = []
   idx = 0
   for idx in range(len(xbeg_list)): 
-     xbeg = xbeg_list[idx]
-     ybeg = ybeg_list[idx]
-     xcond = (data[:,0]<=xbeg+block_size) & (data[:,0]>=xbeg)
-     ycond = (data[:,1]<=ybeg+block_size) & (data[:,1]>=ybeg)
-     cond = xcond & ycond
-     if np.sum(cond) < 100: # discard block if there are less than 100 pts.
-       continue
-     
-     block_data = data[cond, :]
-     block_label = label[cond]
-     
-     # randomly subsample data
-     block_data_sampled, block_label_sampled = \
-       sample_data_label(block_data, block_label, num_point)
-     block_data_list.append(np.expand_dims(block_data_sampled, 0))
-     block_label_list.append(np.expand_dims(block_label_sampled, 0))
+    start_time = time.time()
+    xbeg = xbeg_list[idx]
+    ybeg = ybeg_list[idx]
+    xcond = (data[:,0]<=xbeg+block_size) & (data[:,0]>=xbeg)
+    ycond = (data[:,1]<=ybeg+block_size) & (data[:,1]>=ybeg)
+    cond = xcond & ycond
+    if np.sum(cond) < 100: # discard block if there are less than 100 pts.
+      continue
       
+    block_data = data[cond, :]
+    block_label = label[cond]
+    
+    # randomly subsample data
+    block_data_sampled, block_label_sampled = \
+      sample_data_label(block_data, block_label, num_point)
+    block_data_list.append(np.expand_dims(block_data_sampled, 0))
+    block_label_list.append(np.expand_dims(block_label_sampled, 0))
   return np.concatenate(block_data_list, 0), \
        np.concatenate(block_label_list, 0)
 
@@ -226,34 +263,61 @@ def room2blocks_wrapper(data_label_filename, num_point, block_size=1.0, stride=1
               random_sample, sample_num, sample_aug)
 
 def room2blocks_plus_normalized(data_label, num_point, block_size, stride,
-                random_sample, sample_num, sample_aug):
+                random_sample, sample_num, sample_aug, rgb):
   """ room2block, with input filename and RGB preprocessing.
     for each block centralize XYZ, add normalized XYZ as 678 channels
   """
-  data = data_label[:,0:6]
-  data[:,3:6] /= 255.0
+  if rgb:
+    data = data_label[:,0:6]
+    data[:, 3:6] /= 65535.0
+  else:
+    data = data_label[:, 0:3]
+  # data[:,3:6] /= 255.0
   label = data_label[:,-1].astype(np.uint8)
   max_room_x = max(data[:,0])
   max_room_y = max(data[:,1])
   max_room_z = max(data[:,2])
   
+  print("entering room2blocks")
   data_batch, label_batch = room2blocks(data, label, num_point, block_size, stride,
                       random_sample, sample_num, sample_aug)
-  new_data_batch = np.zeros((data_batch.shape[0], num_point, 9))
+  print("done entering room2blocks")
+  if rgb:
+    new_data_batch = np.zeros((data_batch.shape[0], num_point, 9))
+  else:
+    new_data_batch = np.zeros((data_batch.shape[0], num_point, 6))
+  
+  koefisien = np.zeros((data_batch.shape[0], num_point, 2))
+
+  print(data_batch.shape[0])
   for b in range(data_batch.shape[0]):
-    new_data_batch[b, :, 6] = data_batch[b, :, 0]/max_room_x
-    new_data_batch[b, :, 7] = data_batch[b, :, 1]/max_room_y
-    new_data_batch[b, :, 8] = data_batch[b, :, 2]/max_room_z
+    if rgb:
+      new_data_batch[b, :, 6] = data_batch[b, :, 0]/max_room_x
+      new_data_batch[b, :, 7] = data_batch[b, :, 1]/max_room_y
+      new_data_batch[b, :, 8] = data_batch[b, :, 2]/max_room_z
+    else:
+      new_data_batch[b, :, 3] = data_batch[b, :, 0]/max_room_x
+      new_data_batch[b, :, 4] = data_batch[b, :, 1]/max_room_y
+      new_data_batch[b, :, 5] = data_batch[b, :, 2]/max_room_z
+
     minx = min(data_batch[b, :, 0])
     miny = min(data_batch[b, :, 1])
     data_batch[b, :, 0] -= (minx+block_size/2)
     data_batch[b, :, 1] -= (miny+block_size/2)
-  new_data_batch[:, :, 0:6] = data_batch
-  return new_data_batch, label_batch
+
+    koefisien[b, :, 0] = (minx+block_size/2)
+    koefisien[b, :, 1] = (miny+block_size/2)
+  
+  if rgb:
+    new_data_batch[:, :, 0:6] = data_batch
+  else:
+    new_data_batch[:, :, 0:3] = data_batch
+  print(new_data_batch.shape)
+  return new_data_batch, label_batch, koefisien
 
 
 def room2blocks_wrapper_normalized(data_label_filename, num_point, block_size=1.0, stride=1.0,
-                   random_sample=False, sample_num=None, sample_aug=1):
+                   random_sample=False, sample_num=None, sample_aug=1, rgb=False):
   if data_label_filename[-3:] == 'txt':
     data_label = np.loadtxt(data_label_filename)
   elif data_label_filename[-3:] == 'npy':
@@ -262,7 +326,7 @@ def room2blocks_wrapper_normalized(data_label_filename, num_point, block_size=1.
     print('Unknown file type! exiting.')
     exit()
   return room2blocks_plus_normalized(data_label, num_point, block_size, stride,
-                     random_sample, sample_num, sample_aug)
+                     random_sample, sample_num, sample_aug, rgb)
 
 def room2samples(data, label, sample_num_point):
   """ Prepare whole room samples.
