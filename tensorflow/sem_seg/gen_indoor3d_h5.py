@@ -98,7 +98,7 @@ sample_cnt = 0
 for i, data_label_filename in enumerate(data_label_files):
     print(data_label_filename)
     data, label, _ = indoor3d_util.room2blocks_wrapper_normalized(data_label_filename, NUM_POINT, block_size=block_size, stride=block_size,
-                                                 random_sample=False, sample_num=None, rgb=RGB)
+                                                 random_sample=False, sample_num=None, rgb=False)
     print('{0}, {1}'.format(data.shape, label.shape))
     for _ in range(data.shape[0]):
         fout_room.write(os.path.basename(data_label_filename)[0:-4]+'\n')
