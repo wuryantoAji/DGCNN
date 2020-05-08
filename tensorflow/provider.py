@@ -141,7 +141,7 @@ def getDataFiles(list_filename):
 
 def load_h5(h5_filename):
   #print(h5_filename)
-  #h5_filename = f'{h5_filename}'
+  h5_filename = f'{h5_filename}'
   print(h5_filename)
   f = h5py.File(h5_filename)
   data = f['data'][:]
@@ -149,7 +149,7 @@ def load_h5(h5_filename):
   return (data, label)
 
 def loadDataFile(filename):
-  print(f'{DATA_DIR}/{filename}')
+  #print(f'{DATA_DIR}/{filename}')
   #print(f'{filename}')
   return load_h5(f'{DATA_DIR}/{filename}')
 
