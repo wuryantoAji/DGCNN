@@ -137,19 +137,22 @@ def random_scale_point_cloud(batch_data, scale_low=0.8, scale_high=1.25):
   return batch_data
 
 def getDataFiles(list_filename):
+  list_filename = f'{list_filename}'
   return [line.rstrip() for line in open(list_filename)]
 
 def load_h5(h5_filename):
+  h5_filename = f'{h5_filename}'
   f = h5py.File(h5_filename)
   data = f['data'][:]
   label = f['label'][:]
   return (data, label)
 
 def loadDataFile(filename):
-  return load_h5(filename)
+  return load_h5(f'{DATA_DIR}/{filename}')
 
 
 def load_h5_data_label_seg(h5_filename):
+  h5_filename = f'{h5_filename}'
   f = h5py.File(h5_filename)
   data = f['data'][:] # (2048, 2048, 3)
   label = f['label'][:] # (2048, 1)
