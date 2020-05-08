@@ -6,15 +6,15 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(BASE_DIR)
 
 # Download dataset for point cloud classification
-DATA_DIR = os.path.join(BASE_DIR, 'data')
+DATA_DIR = '/home/aji/aji-skripsi/data/'
 if not os.path.exists(DATA_DIR):
   os.mkdir(DATA_DIR)
-if not os.path.exists(os.path.join(DATA_DIR, 'modelnet40_ply_hdf5_2048')):
-  www = 'https://shapenet.cs.stanford.edu/media/modelnet40_ply_hdf5_2048.zip'
-  zipfile = os.path.basename(www)
-  os.system('wget %s; unzip %s' % (www, zipfile))
-  os.system('mv %s %s' % (zipfile[:-4], DATA_DIR))
-  os.system('rm %s' % (zipfile))
+#if not os.path.exists(os.path.join(DATA_DIR, 'modelnet40_ply_hdf5_2048')):
+#  www = 'https://shapenet.cs.stanford.edu/media/modelnet40_ply_hdf5_2048.zip'
+#  zipfile = os.path.basename(www)
+#  os.system('wget %s; unzip %s' % (www, zipfile))
+#  os.system('mv %s %s' % (zipfile[:-4], DATA_DIR))
+#  os.system('rm %s' % (zipfile))
 
 
 def shuffle_data(data, labels):
@@ -39,7 +39,7 @@ def rotate_point_cloud(batch_data):
       BxNx3 array, rotated batch of point clouds
   """
   rotated_data = np.zeros(batch_data.shape, dtype=np.float32)
-  for k in xrange(batch_data.shape[0]):
+  for k in range(batch_data.shape[0]):
     rotation_angle = np.random.uniform() * 2 * np.pi
     cosval = np.cos(rotation_angle)
     sinval = np.sin(rotation_angle)
@@ -59,7 +59,7 @@ def rotate_point_cloud_by_angle(batch_data, rotation_angle):
       BxNx3 array, rotated batch of point clouds
   """
   rotated_data = np.zeros(batch_data.shape, dtype=np.float32)
-  for k in xrange(batch_data.shape[0]):
+  for k in range(batch_data.shape[0]):
     #rotation_angle = np.random.uniform() * 2 * np.pi
     cosval = np.cos(rotation_angle)
     sinval = np.sin(rotation_angle)
@@ -79,7 +79,7 @@ def rotate_perturbation_point_cloud(batch_data, angle_sigma=0.06, angle_clip=0.1
       BxNx3 array, rotated batch of point clouds
   """
   rotated_data = np.zeros(batch_data.shape, dtype=np.float32)
-  for k in xrange(batch_data.shape[0]):
+  for k in range(batch_data.shape[0]):
     angles = np.clip(angle_sigma*np.random.randn(3), -angle_clip, angle_clip)
     Rx = np.array([[1,0,0],
              [0,np.cos(angles[0]),-np.sin(angles[0])],
