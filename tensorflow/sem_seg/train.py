@@ -10,7 +10,7 @@ import os
 import sys
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(BASE_DIR)
-DATA_DIR = '/home/aji/aji-skripsi/data'
+#DATA_DIR = '/home/aji/aji-skripsi/data'
 sys.path.append(BASE_DIR)
 sys.path.append(ROOT_DIR)
 sys.path.append(os.path.join(ROOT_DIR, 'utils'))
@@ -68,8 +68,8 @@ HOSTNAME = socket.gethostname()
 #print (len(room_filelist))
 
 print('training with XYZ')
-ALL_FILES = provider.getDataFiles(f'{DATA_DIR}/margonda_hdf5_data_4096_uncol/all_files.txt')
-room_filelist = [line.rstrip() for line in open(f'{DATA_DIR}/margonda_hdf5_data_4096_uncol/room_filelist.txt')]
+ALL_FILES = provider.getDataFiles(f'/home/aji/aji-skripsi/data/margonda_hdf5_data_4096_uncol/all_files.txt')
+room_filelist = [line.rstrip() for line in open(f'/home/aji/aji-skripsi/data/margonda_hdf5_data_4096_uncol/room_filelist.txt')]
 
 # Load ALL data
 data_batch_list = []

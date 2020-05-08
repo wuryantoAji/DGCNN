@@ -6,9 +6,9 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(BASE_DIR)
 
 # Download dataset for point cloud classification
-DATA_DIR = '/home/aji/aji-skripsi/data'
-if not os.path.exists(DATA_DIR):
-  os.mkdir(DATA_DIR)
+#DATA_DIR = '/home/aji/aji-skripsi/data'
+#if not os.path.exists(DATA_DIR):
+#  os.mkdir(DATA_DIR)
 #if not os.path.exists(os.path.join(DATA_DIR, 'modelnet40_ply_hdf5_2048')):
 #  www = 'https://shapenet.cs.stanford.edu/media/modelnet40_ply_hdf5_2048.zip'
 #  zipfile = os.path.basename(www)
@@ -149,8 +149,9 @@ def load_h5(h5_filename):
   return (data, label)
 
 def loadDataFile(filename):
-  print(f'{DATA_DIR}/{filename}')
-  return load_h5(f'{DATA_DIR}/{filename}')
+  #print(f'{DATA_DIR}/{filename}')
+  print(f'{filename}')
+  return load_h5(f'{filename}')
 
 
 def load_h5_data_label_seg(h5_filename):
