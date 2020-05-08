@@ -149,6 +149,7 @@ def load_h5(h5_filename):
   return (data, label)
 
 def loadDataFile(filename):
+  print(f'{DATA_DIR}/{filename}')
   return load_h5(f'{DATA_DIR}/{filename}')
 
 
