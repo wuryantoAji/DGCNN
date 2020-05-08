@@ -140,6 +140,7 @@ def getDataFiles(list_filename):
   return [line.rstrip() for line in open(list_filename)]
 
 def load_h5(h5_filename):
+  print(h5_filename)
   h5_filename = f'{h5_filename}'
   print(h5_filename)
   f = h5py.File(h5_filename)
@@ -148,8 +149,6 @@ def load_h5(h5_filename):
   return (data, label)
 
 def loadDataFile(filename):
-  print(filename)
-  print(f'{DATA_DIR}/{filename}')    
   return load_h5(f'{DATA_DIR}/{filename}')
 
 
