@@ -10,7 +10,7 @@ sys.path.append(os.path.join(ROOT_DIR, 'utils'))
 sys.path.append(os.path.join(BASE_DIR, '../models'))
 import tf_util
 
-def placeholder_inputs(batch_size, num_point):
+def placeholder_inputs(batch_size, num_point, rgb=False):
   pointclouds_pl = tf.placeholder(tf.float32,
                    shape=(batch_size, num_point, 9))
   labels_pl = tf.placeholder(tf.int32,
