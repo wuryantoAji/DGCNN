@@ -20,7 +20,7 @@ from model import *
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--gpu', type=int, default=0, help='GPU to use [default: GPU 0]')
-parser.add_argument('--model', default='dgcnn', help='Model name: dgcnn')
+#parser.add_argument('--model', default='dgcnn', help='Model name: dgcnn')
 parser.add_argument('--num_gpu', type=int, default=1, help='the number of GPUs to use [default: 2]')
 parser.add_argument('--log_dir', default='log', help='Log dir [default: log]')
 parser.add_argument('--num_point', type=int, default=4096, help='Point number [default: 4096]')
@@ -47,14 +47,14 @@ OPTIMIZER = FLAGS.optimizer
 DECAY_STEP = FLAGS.decay_step
 DECAY_RATE = FLAGS.decay_rate
 RGB = FLAGS.rgb
-MODEL = importlib.import_module(FLAGS.model) # import network module
-MODEL_FILE = os.path.join(BASE_DIR, 'models', FLAGS.model+'.py')
+#MODEL = importlib.import_module(FLAGS.model) # import network module
+#MODEL_FILE = os.path.join(BASE_DIR, 'models', FLAGS.model+'.py')
 
 LOG_DIR = FLAGS.log_dir
 if not os.path.exists(LOG_DIR): os.mkdir(LOG_DIR)
 os.system('cp model.py %s' % (LOG_DIR)) 
 os.system('cp train.py %s' % (LOG_DIR))
-os.system('cp %s %s' % (MODEL_FILE, LOG_DIR)) # bkp of model def 
+#os.system('cp %s %s' % (MODEL_FILE, LOG_DIR)) # bkp of model def 
 LOG_FOUT = open(os.path.join(LOG_DIR, 'log_train.txt'), 'w')
 LOG_FOUT.write(str(FLAGS)+'\n')
 
@@ -186,17 +186,18 @@ def train():
         with tf.device('/gpu:%d' % i):
           with tf.name_scope('%s_%d' % (TOWER_NAME, i)) as scope:
       
-            pointclouds_pl, labels_pl = MODEL.placeholder_inputs(BATCH_SIZE, NUM_POINT, rgb=False)
+            #pointclouds_pl, labels_pl = MODEL.placeholder_inputs(BATCH_SIZE, NUM_POINT, rgb=False)
+            pointclouds_pl, labels_pl = placeholder_inputs(BATCH_SIZE, NUM_POINT, rgb=RGB)
             is_training_pl = tf.placeholder(tf.bool, shape=())
             
             pointclouds_phs.append(pointclouds_pl)
             labels_phs.append(labels_pl)
             is_training_phs.append(is_training_pl)
       
-            #pred = get_model(pointclouds_phs[-1], is_training_phs[-1], bn_decay=bn_decay)
-            #loss = get_loss(pred, labels_phs[-1])
-            pred, end_points = MODEL.get_model(pointclouds_pl, is_training_pl, bn_decay=bn_decay)
-            loss = MODEL.get_loss(pred, labels_pl, end_points)
+            pred = get_model(pointclouds_phs[-1], is_training_phs[-1], bn_decay=bn_decay)
+            loss = get_loss(pred, labels_phs[-1])
+            #pred, end_points = MODEL.get_model(pointclouds_pl, is_training_pl, bn_decay=bn_decay)
+            #loss = MODEL.get_loss(pred, labels_pl, end_points)
             tf.summary.scalar('loss', loss)
 
             correct = tf.equal(tf.argmax(pred, 2), tf.to_int64(labels_phs[-1]))
