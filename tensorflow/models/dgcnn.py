@@ -11,7 +11,7 @@ import tf_util
 from transform_nets import input_transform_net
 
 
-def placeholder_inputs(batch_size, num_point):
+def placeholder_inputs(batch_size, num_point,rgb):
   pointclouds_pl = tf.placeholder(tf.float32, shape=(batch_size, num_point, 3))
   labels_pl = tf.placeholder(tf.int32, shape=(batch_size))
   return pointclouds_pl, labels_pl
