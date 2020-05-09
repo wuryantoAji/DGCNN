@@ -181,7 +181,7 @@ def train():
         with tf.device('/gpu:%d' % i):
           with tf.name_scope('%s_%d' % (TOWER_NAME, i)) as scope:
       
-            pointclouds_pl, labels_pl = placeholder_inputs(BATCH_SIZE, NUM_POINT)
+            pointclouds_pl, labels_pl = placeholder_inputs(BATCH_SIZE, NUM_POINT, rgb=False)
             is_training_pl = tf.placeholder(tf.bool, shape=())
             
             pointclouds_phs.append(pointclouds_pl)
