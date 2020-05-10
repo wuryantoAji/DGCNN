@@ -6,6 +6,8 @@ ROOT_DIR = os.path.dirname(BASE_DIR)
 sys.path.append(BASE_DIR)
 from model import *
 import indoor3d_util
+import time
+import json
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--gpu', type=int, default=0, help='GPU to use [default: GPU 0]')
@@ -17,6 +19,9 @@ parser.add_argument('--output_filelist', required=True, help='TXT filename, file
 parser.add_argument('--room_data_filelist', required=True, help='TXT filename, filelist, each line is a test room data label file.')
 parser.add_argument('--no_clutter', action='store_true', help='If true, donot count the clutter class')
 parser.add_argument('--visu', action='store_true', help='Whether to output OBJ file for prediction visualization.')
+parser.add_argument('--rgb', type=bool, default=False,help='determine if data contains rgb or not')
+parser.add_argument('--area', type=int, default=1, help='determine the test area')
+parser.add_argument('--jenis', type=str, default="Margonda", help='determine the test area')
 FLAGS = parser.parse_args()
 
 BATCH_SIZE = FLAGS.batch_size
@@ -24,12 +29,26 @@ NUM_POINT = FLAGS.num_point
 MODEL_PATH = FLAGS.model_path
 GPU_INDEX = FLAGS.gpu
 DUMP_DIR = FLAGS.dump_dir
+RGB = FLAGS.rgb
 if not os.path.exists(DUMP_DIR): os.mkdir(DUMP_DIR)
 LOG_FOUT = open(os.path.join(DUMP_DIR, 'log_evaluate.txt'), 'w')
 LOG_FOUT.write(str(FLAGS)+'\n')
 ROOM_PATH_LIST = [os.path.join(ROOT_DIR,line.rstrip()) for line in open(FLAGS.room_data_filelist)]
 
-NUM_CLASSES = 13
+#NUM_CLASSES = 13
+NUM_CLASSES = 2
+
+if RGB:
+      var = '_rgb_'
+else:
+  var = '_'
+
+if FLAGS.jenis == "Margonda":
+  with open(f'/home/aji/aji-skripsi/data/margonda{var}3d_Area_{FLAGS.area}.json', 'r') as r:
+    MAPPING = json.load(r)
+else:
+  with open(f'/home/aji/aji-skripsi/data/dublin_shifted_Area_{FLAGS.area}.json', 'r') as r:
+    MAPPING = json.load(r)  
 
 def log_string(out_str):
   LOG_FOUT.write(out_str+'\n')
@@ -98,12 +117,18 @@ def eval_one_epoch(sess, ops, room_path, out_data_label_filename, out_gt_label_f
   fout_data_label = open(out_data_label_filename, 'w')
   fout_gt_label = open(out_gt_label_filename, 'w')
   
-  current_data, current_label = indoor3d_util.room2blocks_wrapper_normalized(room_path, NUM_POINT)
+  print("Entering normalized data")
+  current_data, current_label, koefisien = indoor3d_util.room2blocks_wrapper_normalized(room_path, NUM_POINT, block_size=block_size, stride=block_size, rgb=RGB)
+  print("Done normalized data")
   current_data = current_data[:,0:NUM_POINT,:]
+  koefisien = koefisien[:, 0:NUM_POINT, :]
   current_label = np.squeeze(current_label)
   # Get room dimension..
   data_label = np.load(room_path)
-  data = data_label[:,0:6]
+  if RGB:
+    data = data_label[:,0:6]
+  else:
+    data = data_label[:, 0:3]
   max_room_x = max(data[:,0])
   max_room_y = max(data[:,1])
   max_room_z = max(data[:,2])
@@ -132,19 +157,44 @@ def eval_one_epoch(sess, ops, room_path, out_data_label_filename, out_gt_label_f
     # Save prediction labels to OBJ file
     for b in range(BATCH_SIZE):
       pts = current_data[start_idx+b, :, :]
+      koef = koefisien[start_idx+b, :, :]
       l = current_label[start_idx+b,:]
-      pts[:,6] *= max_room_x
-      pts[:,7] *= max_room_y
-      pts[:,8] *= max_room_z
-      pts[:,3:6] *= 255.0
+
+      if RGB:
+        pts[:,6] *= max_room_x
+        pts[:,7] *= max_room_y
+        pts[:,8] *= max_room_z
+        pts[:, 3:6] *= 65535.0
+      else:
+        pts[:, 3] *= max_room_x
+        pts[:, 4] *= max_room_y
+        pts[:, 5] *= max_room_z
       pred = pred_label[b, :]
       for i in range(NUM_POINT):
+        real_pts = MAPPING[key].split(",")
+
         color = indoor3d_util.g_label2color[pred[i]]
         color_gt = indoor3d_util.g_label2color[current_label[start_idx+b, i]]
         if FLAGS.visu:
-          fout.write('v %f %f %f %d %d %d\n' % (pts[i,6], pts[i,7], pts[i,8], color[0], color[1], color[2]))
-          fout_gt.write('v %f %f %f %d %d %d\n' % (pts[i,6], pts[i,7], pts[i,8], color_gt[0], color_gt[1], color_gt[2]))
-        fout_data_label.write('%f %f %f %d %d %d %f %d\n' % (pts[i,6], pts[i,7], pts[i,8], pts[i,3], pts[i,4], pts[i,5], pred_val[b,i,pred[i]], pred[i]))
+          if RGB:
+            # fout.write('v %f %f %f %d %d %d\n' % (pts[i,6], pts[i,7], pts[i,8], color[0], color[1], color[2]))
+            # fout_gt.write('v %f %f %f %d %d %d\n' % (pts[i,6], pts[i,7], pts[i,8], color_gt[0], color_gt[1], color_gt[2]))
+            pass
+
+          else:
+            # fout.write('v %f %f %f %d %d %d\n' % (pts[i, 3], pts[i, 4], pts[i, 5], color[0], color[1], color[2]))
+            # fout_gt.write('v %f %f %f %d %d %d\n' % (pts[i, 3], pts[i, 4], pts[i, 5], color_gt[0], color_gt[1], color_gt[2]))
+            pass
+        
+          fout.write(f'v {real_pts[0]} {real_pts[1]} {real_pts[2]} {color[0]} {color[1]} {color[2]}\n')
+          fout_gt.write(f'v {real_pts[0]} {real_pts[1]} {real_pts[2]} {color_gt[0]} {color_gt[1]} {color_gt[2]}\n')
+        
+        
+        if RGB:
+          fout_data_label.write(f'{real_pts[0]} {real_pts[1]} {real_pts[2]} {pts[i,3]} {pts[i,4]} {pts[i,5]} {pred_val[b,i,pred[i]]} {pred[i]}\n')
+        else:
+          fout_data_label.write(f'{real_pts[0]} {real_pts[1]} {real_pts[2]} {pts[i,0]} {pts[i,1]} {pts[i,2]} {pred_val[b,i,pred[i]]} {pred[i]}\n')
+
         fout_gt_label.write('%d\n' % (l[i]))
     
     correct = np.sum(pred_label == current_label[start_idx:end_idx,:])
@@ -169,5 +219,7 @@ def eval_one_epoch(sess, ops, room_path, out_data_label_filename, out_gt_label_f
 
 if __name__=='__main__':
   with tf.Graph().as_default():
+    start_time = time.time()
     evaluate()
+    print("Running time is: ", time.time()-start_time)
   LOG_FOUT.close()
