@@ -49,10 +49,10 @@ else:
   var = '_'
 
 if FLAGS.jenis == "Margonda":
-  with open(f'/home/satria/SkripsiSatria/sem_seg/margonda{var}3d_Area_{FLAGS.area}.json', 'r') as r:
+  with open(f'/home/aji/aji-skripsi/data/margonda{var}3d_Area_{FLAGS.area}.json', 'r') as r:
     MAPPING = json.load(r)
 else:
-  with open(f'/home/satria/SkripsiSatria/sem_seg/dublin_shifted_Area_{FLAGS.area}.json', 'r') as r:
+  with open(f'/home/aji/aji-skripsi/data/dublin_shifted_Area_{FLAGS.area}.json', 'r') as r:
     MAPPING = json.load(r)
 
 def log_string(out_str):
@@ -181,7 +181,7 @@ def eval_one_epoch(sess, ops, room_path, out_data_label_filename, out_gt_label_f
       for i in range(NUM_POINT):
         key = f'{pts[i,0]+koef[i,0]},{pts[i,1]+koef[i,1]},{pts[i,2]}'
         real_pts = MAPPING[key].split(",")
-        
+        print (pred)
         color = indoor3d_util.g_label2color[pred[i]]
         color_gt = indoor3d_util.g_label2color[current_label[start_idx+b, i]]
         if FLAGS.visu:
