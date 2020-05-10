@@ -173,6 +173,7 @@ def eval_one_epoch(sess, ops, room_path, out_data_label_filename, out_gt_label_f
         pts[:, 5] *= max_room_z
       pred = pred_label[b, :]
       for i in range(NUM_POINT):
+        key = f'{pts[i,0]+koef[i,0]},{pts[i,1]+koef[i,1]},{pts[i,2]}'
         real_pts = MAPPING[key].split(",")
 
         color = indoor3d_util.g_label2color[pred[i]]
