@@ -38,6 +38,8 @@ ROOM_PATH_LIST = [os.path.join(ROOT_DIR,line.rstrip()) for line in open(FLAGS.ro
 #NUM_CLASSES = 13
 NUM_CLASSES = 2
 
+block_size = 10.0
+
 if RGB:
       var = '_rgb_'
 else:
