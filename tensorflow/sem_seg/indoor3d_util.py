@@ -20,7 +20,7 @@ sys.path.append(BASE_DIR)
 #  DATA_PATH = os.path.join(ROOT_DIR, 'data', 'margonda_rgb_3d')
 #else:
 #  DATA_PATH = os.path.join(ROOT_DIR, 'data', 'margonda_3d')
-
+DATA_PATH = '/home/aji/aji-skripsi/data/margonda_3d'
 
 
 g_classes = [x.rstrip() for x in open(os.path.join(BASE_DIR, 'meta/class_names.txt'))]
