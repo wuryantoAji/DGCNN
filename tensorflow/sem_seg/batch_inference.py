@@ -35,22 +35,25 @@ LOG_FOUT = open(os.path.join(DUMP_DIR, 'log_evaluate.txt'), 'w')
 LOG_FOUT.write(str(FLAGS)+'\n')
 ROOM_PATH_LIST = [os.path.join(ROOT_DIR,line.rstrip()) for line in open(FLAGS.room_data_filelist)]
 
-#NUM_CLASSES = 13
+if NUM_POINT == 4096:
+  block_size = 10.0
+else:
+  block_size = 5.0
+
+# NUM_CLASSES = 13
 NUM_CLASSES = 2
 
-block_size = 10.0
-
 if RGB:
-      var = '_rgb_'
+  var = '_rgb_'
 else:
   var = '_'
 
 if FLAGS.jenis == "Margonda":
-  with open(f'/home/aji/aji-skripsi/data/margonda{var}3d_Area_{FLAGS.area}.json', 'r') as r:
+  with open(f'/home/satria/SkripsiSatria/sem_seg/margonda{var}3d_Area_{FLAGS.area}.json', 'r') as r:
     MAPPING = json.load(r)
 else:
-  with open(f'/home/aji/aji-skripsi/data/dublin_shifted_Area_{FLAGS.area}.json', 'r') as r:
-    MAPPING = json.load(r)  
+  with open(f'/home/satria/SkripsiSatria/sem_seg/dublin_shifted_Area_{FLAGS.area}.json', 'r') as r:
+    MAPPING = json.load(r)
 
 def log_string(out_str):
   LOG_FOUT.write(out_str+'\n')
@@ -61,7 +64,7 @@ def evaluate():
   is_training = False
    
   with tf.device('/gpu:'+str(GPU_INDEX)):
-    pointclouds_pl, labels_pl = placeholder_inputs(BATCH_SIZE, NUM_POINT)
+    pointclouds_pl, labels_pl = placeholder_inputs(BATCH_SIZE, NUM_POINT, rgb=RGB)
     is_training_pl = tf.placeholder(tf.bool, shape=())
 
     pred = get_model(pointclouds_pl, is_training_pl)
@@ -113,6 +116,7 @@ def eval_one_epoch(sess, ops, room_path, out_data_label_filename, out_gt_label_f
   total_correct_class = [0 for _ in range(NUM_CLASSES)]
 
   if FLAGS.visu:
+    print("entering visu ")
     fout = open(os.path.join(DUMP_DIR, os.path.basename(room_path)[:-4]+'_pred.obj'), 'w')
     fout_gt = open(os.path.join(DUMP_DIR, os.path.basename(room_path)[:-4]+'_gt.obj'), 'w')
     fout_real_color = open(os.path.join(DUMP_DIR, os.path.basename(room_path)[:-4]+'_real_color.obj'), 'w')
@@ -135,6 +139,8 @@ def eval_one_epoch(sess, ops, room_path, out_data_label_filename, out_gt_label_f
   max_room_y = max(data[:,1])
   max_room_z = max(data[:,2])
   
+  print(max_room_x, max_room_y, max_room_z)
+
   file_size = current_data.shape[0]
   num_batches = file_size // BATCH_SIZE
   print(file_size)
@@ -175,7 +181,7 @@ def eval_one_epoch(sess, ops, room_path, out_data_label_filename, out_gt_label_f
       for i in range(NUM_POINT):
         key = f'{pts[i,0]+koef[i,0]},{pts[i,1]+koef[i,1]},{pts[i,2]}'
         real_pts = MAPPING[key].split(",")
-
+        
         color = indoor3d_util.g_label2color[pred[i]]
         color_gt = indoor3d_util.g_label2color[current_label[start_idx+b, i]]
         if FLAGS.visu:
