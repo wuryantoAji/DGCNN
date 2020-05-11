@@ -13,9 +13,9 @@ gt_label_filenames = [f.rstrip('_pred\.txt') + '_gt.txt' for f in pred_data_labe
 
 num_room = len(gt_label_filenames)
 
-gt_classes = [0 for _ in range(13)]
-positive_classes = [0 for _ in range(13)]
-true_positive_classes = [0 for _ in range(13)]
+gt_classes = [0 for _ in range(2)]
+positive_classes = [0 for _ in range(2)]
+true_positive_classes = [0 for _ in range(2)]
 
 for i in range(num_room):
   print(i)
@@ -37,11 +37,66 @@ print(true_positive_classes)
 
 print('Overall accuracy: {0}'.format(sum(true_positive_classes)/float(sum(positive_classes))))
 
+
+print("Precision:")
+precision_list = []
+for i in range(2):
+    if positive_classes[i] == 0:
+        prec = 0
+        print(prec)
+        precision_list.append(prec)
+
+    elif true_positive_classes[i] == 0:
+        prec = 0
+        print(prec)
+        precision_list.append(prec)
+
+    else:
+        prec = true_positive_classes[i] / float(positive_classes[i])
+        print(prec)
+        precision_list.append(prec)
+
+print(sum(precision_list) / 2.0)
+
+print("Recall:")
+recall_list = []
+for i in range(2):
+    if true_positive_classes[i] == 0:
+        rec = 0
+        print(rec)
+        recall_list.append(rec)
+    else:
+        rec = true_positive_classes[i] / float(gt_classes[i])
+        print(rec)
+        recall_list.append(rec)
+
+print(sum(recall_list) / 2.0)
+
+print("F-Score:")
+fscore_list = []
+for i in range(2):
+
+    if precision_list[i] + recall_list[i] == 0:
+        fscore = 0
+        print(fscore)
+        fscore_list.append(fscore)
+    else:
+        fscore = (
+            2
+            * precision_list[i]
+            * recall_list[i]
+            / float(precision_list[i] + recall_list[i])
+        )
+        print(fscore)
+        fscore_list.append(fscore)
+
+print(sum(fscore_list) / 2.0)
+
 print ('IoU:')
 iou_list = []
 for i in range(13):
-  print('ke {} value {} {} {}'.format(i, gt_classes[i], positive_classes[i], true_positive_classes[i]))
-  iou = float(true_positive_classes[i])/float(gt_classes[i]+positive_classes[i]-true_positive_classes[i]) 
+#  print('ke {} value {} {} {}'.format(i, gt_classes[i], positive_classes[i], true_positive_classes[i]))
+  iou = true_positive_classes[i]/float(gt_classes[i]+positive_classes[i]-true_positive_classes[i]) 
   print(iou)
   iou_list.append(iou)
 
