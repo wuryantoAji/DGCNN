@@ -1,9 +1,13 @@
 import numpy as np
 
 pred_data_label_filenames = []
-for i in range(1,7):
-  file_name = 'log{}/output_filelist.txt'.format(i)
-  pred_data_label_filenames += [line.rstrip() for line in open(file_name)]
+#for i in range(1,7):
+#  file_name = 'log{}/output_filelist.txt'.format(i)
+#  pred_data_label_filenames += [line.rstrip() for line in open(file_name)]
+
+file_name = 'log1/output_filelist.txt'
+pred_data_label_filenames += [line.rstrip() for line in open(file_name)]
+
 
 gt_label_filenames = [f.rstrip('_pred\.txt') + '_gt.txt' for f in pred_data_label_filenames]
 
@@ -19,7 +23,7 @@ for i in range(num_room):
   pred_label = data_label[:,-1]
   gt_label = np.loadtxt(gt_label_filenames[i])
   print(gt_label.shape)
-  for j in xrange(gt_label.shape[0]):
+  for j in range(gt_label.shape[0]):
     gt_l = int(gt_label[j])
     pred_l = int(pred_label[j])
     gt_classes[gt_l] += 1
