@@ -40,7 +40,7 @@ print('Overall accuracy: {0}'.format(sum(true_positive_classes)/float(sum(positi
 print ('IoU:')
 iou_list = []
 for i in range(13):
-  print('ke {} value {}'.format(i, gt_classes[i]+positive_classes[i]-true_positive_classes[i]))
+  print('ke {} value {} {} {}'.format(i, gt_classes[i], positive_classes[i], true_positive_classes[i]))
   iou = float(true_positive_classes[i])/float(gt_classes[i]+positive_classes[i]-true_positive_classes[i]) 
   print(iou)
   iou_list.append(iou)
