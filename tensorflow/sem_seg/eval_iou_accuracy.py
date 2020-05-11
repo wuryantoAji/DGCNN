@@ -94,11 +94,11 @@ print(sum(fscore_list) / 2.0)
 
 print ('IoU:')
 iou_list = []
-for i in range(13):
+for i in range(2):
 #  print('ke {} value {} {} {}'.format(i, gt_classes[i], positive_classes[i], true_positive_classes[i]))
   iou = true_positive_classes[i]/float(gt_classes[i]+positive_classes[i]-true_positive_classes[i]) 
   print(iou)
   iou_list.append(iou)
 
 print ('avg IoU:')
-print(sum(iou_list)/13.0)
+print(sum(iou_list)/2)
