@@ -40,7 +40,7 @@ g_class2label = {cls: i for i,cls in enumerate(g_classes)}
 #          'board':       [200,200,200],
 #          'clutter':     [50,50,50]} 
 g_class2color = {'nonbuilding': [0, 255, 0],
-                 'building': [0, 0, 255]}
+                 'building': [255, 0, 0]}
 g_easy_view_labels = [7,8,9,10,11,1]
 g_label2color = {g_classes.index(cls): g_class2color[cls] for cls in g_classes}
 
