@@ -1,3 +1,2 @@
-tanah
-pohon
-rumah
+nonbuilding
+building
