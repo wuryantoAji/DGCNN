@@ -1,12 +1,18 @@
 import numpy as np
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--area', type=int, default=1, help='area to eval 1-6')
+FLAGS = parser.parse_args()
+AREA = FLAGS.area
 
 pred_data_label_filenames = []
-for i in range(1,7):
-  file_name = 'log{}/output_filelist.txt'.format(i)
-  pred_data_label_filenames += [line.rstrip() for line in open(file_name)]
+#for i in range(1,7):
+#  file_name = 'log{}/output_filelist.txt'.format(i)
+#  pred_data_label_filenames += [line.rstrip() for line in open(file_name)]
 
-#file_name = 'log1/output_filelist.txt'
-#pred_data_label_filenames += [line.rstrip() for line in open(file_name)]
+file_name = 'log{AREA}/output_filelist.txt'
+pred_data_label_filenames += [line.rstrip() for line in open(file_name)]
 
 
 gt_label_filenames = [f.rstrip('_pred\.txt') + '_gt.txt' for f in pred_data_label_filenames]
