@@ -117,9 +117,9 @@ def eval_one_epoch(sess, ops, room_path, out_data_label_filename, out_gt_label_f
 
   if FLAGS.visu:
     print("entering visu ")
-    fout = open(os.path.join(DUMP_DIR, os.path.basename(room_path)[:-4]+'_pred.obj'), 'w')
-    fout_gt = open(os.path.join(DUMP_DIR, os.path.basename(room_path)[:-4]+'_gt.obj'), 'w')
-    fout_real_color = open(os.path.join(DUMP_DIR, os.path.basename(room_path)[:-4]+'_real_color.obj'), 'w')
+    fout = open(os.path.join(DUMP_DIR, os.path.basename(room_path)[:-4]+'_build_only_pred.obj'), 'w')
+    fout_gt = open(os.path.join(DUMP_DIR, os.path.basename(room_path)[:-4]+'_build_only_gt.obj'), 'w')
+    fout_real_color = open(os.path.join(DUMP_DIR, os.path.basename(room_path)[:-4]+'_build_only_real_color.obj'), 'w')
   fout_data_label = open(out_data_label_filename, 'w')
   fout_gt_label = open(out_gt_label_filename, 'w')
   
