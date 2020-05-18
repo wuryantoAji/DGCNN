@@ -92,9 +92,9 @@ def evaluate():
   total_seen = 0
   fout_out_filelist = open(FLAGS.output_filelist, 'w')
   for room_path in ROOM_PATH_LIST:
-    out_data_label_filename = os.path.basename(room_path)[:-4] + '_pred.txt'
+    out_data_label_filename = os.path.basename(room_path)[:-4] + '_build_only_pred.txt'
     out_data_label_filename = os.path.join(DUMP_DIR, out_data_label_filename)
-    out_gt_label_filename = os.path.basename(room_path)[:-4] + '_gt.txt'
+    out_gt_label_filename = os.path.basename(room_path)[:-4] + '_build_only_gt.txt'
     out_gt_label_filename = os.path.join(DUMP_DIR, out_gt_label_filename)
    
     print(room_path, out_data_label_filename)
@@ -183,7 +183,7 @@ def eval_one_epoch(sess, ops, room_path, out_data_label_filename, out_gt_label_f
         real_pts = MAPPING[key].split(",")
         color = indoor3d_util.g_label2color[pred[i]]
         color_gt = indoor3d_util.g_label2color[current_label[start_idx+b, i]]
-        if color == [0, 255, 0]:
+        if color == [255, 0, 0]:
             if FLAGS.visu:
                 if RGB:
                     # fout.write('v %f %f %f %d %d %d\n' % (pts[i,6], pts[i,7], pts[i,8], color[0], color[1], color[2]))
@@ -207,6 +207,7 @@ def eval_one_epoch(sess, ops, room_path, out_data_label_filename, out_gt_label_f
                 fout_gt_label.write('%d\n' % (l[i]))
         else:
             pass
+
     correct = np.sum(pred_label == current_label[start_idx:end_idx,:])
     total_correct += correct
     total_seen += (cur_batch_size*NUM_POINT)
