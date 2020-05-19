@@ -92,9 +92,11 @@ def evaluate():
   total_seen = 0
   fout_out_filelist = open(FLAGS.output_filelist, 'w')
   for room_path in ROOM_PATH_LIST:
-    out_data_label_filename = os.path.basename(room_path)[:-4] + '_pred.txt'
+    out_data_label_filename = os.path.basename(room_path)[:-4] + '_pred_change_format.txt'
+    #out_data_label_filename = os.path.basename(room_path)[:-4] + '_pred.txt'
     out_data_label_filename = os.path.join(DUMP_DIR, out_data_label_filename)
-    out_gt_label_filename = os.path.basename(room_path)[:-4] + '_gt.txt'
+    out_gt_label_filename = os.path.basename(room_path)[:-4] + '_gt_change_format.txt'
+    #out_gt_label_filename = os.path.basename(room_path)[:-4] + '_gt.txt'
     out_gt_label_filename = os.path.join(DUMP_DIR, out_gt_label_filename)
    
     print(room_path, out_data_label_filename)
@@ -117,8 +119,10 @@ def eval_one_epoch(sess, ops, room_path, out_data_label_filename, out_gt_label_f
 
   if FLAGS.visu:
     print("entering visu ")
-    fout = open(os.path.join(DUMP_DIR, os.path.basename(room_path)[:-4]+'_pred.obj'), 'w')
-    fout_gt = open(os.path.join(DUMP_DIR, os.path.basename(room_path)[:-4]+'_gt.obj'), 'w')
+    #fout = open(os.path.join(DUMP_DIR, os.path.basename(room_path)[:-4]+'_pred.obj'), 'w')
+    fout = open(os.path.join(DUMP_DIR, os.path.basename(room_path)[:-4]+'_pred_change_format.obj'), 'w')
+    #fout_gt = open(os.path.join(DUMP_DIR, os.path.basename(room_path)[:-4]+'_gt.obj'), 'w')
+    fout_gt = open(os.path.join(DUMP_DIR, os.path.basename(room_path)[:-4]+'_gt_change_format.obj'), 'w')
     fout_real_color = open(os.path.join(DUMP_DIR, os.path.basename(room_path)[:-4]+'_real_color.obj'), 'w')
   fout_data_label = open(out_data_label_filename, 'w')
   fout_gt_label = open(out_gt_label_filename, 'w')
@@ -199,9 +203,11 @@ def eval_one_epoch(sess, ops, room_path, out_data_label_filename, out_gt_label_f
         
         
         if RGB:
-          fout_data_label.write(f'{real_pts[0]} {real_pts[1]} {real_pts[2]} {pts[i,3]} {pts[i,4]} {pts[i,5]} {pred_val[b,i,pred[i]]} {pred[i]}\n')
+          fout_data_label.write(f'{real_pts[0]} {real_pts[1]} {real_pts[2]} {color_gt[0]} {color_gt[1]} {color_gt[2]}\n')
+          #fout_data_label.write(f'{real_pts[0]} {real_pts[1]} {real_pts[2]} {pts[i,3]} {pts[i,4]} {pts[i,5]} {pred_val[b,i,pred[i]]} {pred[i]}\n')
         else:
-          fout_data_label.write(f'{real_pts[0]} {real_pts[1]} {real_pts[2]} {pts[i,0]} {pts[i,1]} {pts[i,2]} {pred_val[b,i,pred[i]]} {pred[i]}\n')
+          #fout_data_label.write(f'{real_pts[0]} {real_pts[1]} {real_pts[2]} {pts[i,0]} {pts[i,1]} {pts[i,2]} {pred_val[b,i,pred[i]]} {pred[i]}\n')
+          fout_data_label.write(f'{real_pts[0]} {real_pts[1]} {real_pts[2]} {color_gt[0]} {color_gt[1]} {color_gt[2]}\n')
 
         fout_gt_label.write('%d\n' % (l[i]))
     
