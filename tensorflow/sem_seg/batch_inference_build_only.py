@@ -52,7 +52,7 @@ if FLAGS.jenis == "Margonda":
   with open(f'/home/aji/aji-skripsi/data/margonda{var}3d_Area_{FLAGS.area}.json', 'r') as r:
     MAPPING = json.load(r)
 else:
-  with open(f'/home/aji/aji-skripsi/data/dublin_Area_{FLAGS.area}.json', 'r') as r:
+  with open(f'/home/aji/aji-skripsi/data/dublin_shifted_Area_{FLAGS.area}.json', 'r') as r:
     MAPPING = json.load(r)
 
 def log_string(out_str):
