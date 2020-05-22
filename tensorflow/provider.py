@@ -6,7 +6,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(BASE_DIR)
 
 # Download dataset for point cloud classification
-DATA_DIR = '/home/aji/aji-skripsi/data'
+DATA_DIR = '/home/aji/satria/satria/data'
 #if not os.path.exists(DATA_DIR):
 #  os.mkdir(DATA_DIR)
 #if not os.path.exists(os.path.join(DATA_DIR, 'modelnet40_ply_hdf5_2048')):
