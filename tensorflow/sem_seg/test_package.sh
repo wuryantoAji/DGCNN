@@ -1,2 +1,11 @@
 CUDA_VISIBLE_DEVICES=2 python3 batch_inference.py --model_path log3_dublin/epoch_49.ckpt --dump_dir log3_dublin/dump_withNonBuilding_RGBFormat --output_filelist log3_dublin/output_filelist.txt --room_data_filelist meta/area3_data_label_dublin.txt --area 3 --visu --jenis dublin 
 CUDA_VISIBLE_DEVICES=2 python3 batch_inference_build_only.py --model_path log3_dublin/epoch_49.ckpt --dump_dir log3_dublin/dump_RGBFormat --output_filelist log3_dublin/output_filelist.txt --room_data_filelist meta/area3_data_label_dublin.txt --area 3 --visu --jenis dublin 
+
+CUDA_VISIBLE_DEVICES=2 python3 batch_inference.py --model_path log4_dublin/epoch_49.ckpt --dump_dir log4_dublin/dump_withNonBuilding_RGBFormat --output_filelist log4_dublin/output_filelist.txt --room_data_filelist meta/area4_data_label_dublin.txt --area 4 --visu --jenis dublin 
+CUDA_VISIBLE_DEVICES=2 python3 batch_inference_build_only.py --model_path log4_dublin/epoch_49.ckpt --dump_dir log4_dublin/dump_RGBFormat --output_filelist log4_dublin/output_filelist.txt --room_data_filelist meta/area4_data_label_dublin.txt --area 4 --visu --jenis dublin 
+
+CUDA_VISIBLE_DEVICES=2 python3 batch_inference.py --model_path log5_dublin/epoch_49.ckpt --dump_dir log5_dublin/dump_withNonBuilding_RGBFormat --output_filelist log5_dublin/output_filelist.txt --room_data_filelist meta/area5_data_label_dublin.txt --area 5 --visu --jenis dublin 
+CUDA_VISIBLE_DEVICES=2 python3 batch_inference_build_only.py --model_path log5_dublin/epoch_49.ckpt --dump_dir log5_dublin/dump_RGBFormat --output_filelist log5_dublin/output_filelist.txt --room_data_filelist meta/area5_data_label_dublin.txt --area 5 --visu --jenis dublin 
+
+CUDA_VISIBLE_DEVICES=2 python3 batch_inference.py --model_path log6_dublin/epoch_49.ckpt --dump_dir log6_dublin/dump_withNonBuilding_RGBFormat --output_filelist log6_dublin/output_filelist.txt --room_data_filelist meta/area6_data_label_dublin.txt --area 6 --visu --jenis dublin 
+CUDA_VISIBLE_DEVICES=2 python3 batch_inference_build_only.py --model_path log6_dublin/epoch_49.ckpt --dump_dir log6_dublin/dump_RGBFormat --output_filelist log6_dublin/output_filelist.txt --room_data_filelist meta/area6_data_label_dublin.txt --area 6 --visu --jenis dublin 
