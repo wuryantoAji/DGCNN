@@ -7,6 +7,7 @@ import socket
 import importlib
 
 import os
+os.environ["CUDA_VISIBLE_DEVICES"]="2,3"
 import sys
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(BASE_DIR)

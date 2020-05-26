@@ -1,0 +1,682 @@
+2020-05-23 13:04:48.615021: I tensorflow/core/platform/cpu_feature_guard.cc:137] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+2020-05-23 13:04:51.092075: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1030] Found device 0 with properties: 
+name: GeForce GTX 1080 Ti major: 6 minor: 1 memoryClockRate(GHz): 1.6575
+pciBusID: 0000:07:00.0
+totalMemory: 10.92GiB freeMemory: 10.77GiB
+2020-05-23 13:04:51.092108: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1120] Creating TensorFlow device (/device:GPU:0) -> (device: 0, name: GeForce GTX 1080 Ti, pci bus id: 0000:07:00.0, compute capability: 6.1)
+training with XYZ
+(6598, 4096, 6) (6598, 4096)
+(2062, 4096, 6) (2062, 4096)
+[_DeviceAttributes(/job:localhost/replica:0/task:0/device:CPU:0, CPU, 268435456), _DeviceAttributes(/job:localhost/replica:0/task:0/device:GPU:0, GPU, 10990492058)]
+**** EPOCH 000 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.562372
+accuracy: 0.762241
+Model saved in file: log2_dublin/epoch_0.ckpt
+**** EPOCH 001 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.456363
+accuracy: 0.796372
+**** EPOCH 002 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.440544
+accuracy: 0.807707
+**** EPOCH 003 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.425780
+accuracy: 0.818366
+**** EPOCH 004 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.419561
+accuracy: 0.825133
+**** EPOCH 005 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.401792
+accuracy: 0.829575
+**** EPOCH 006 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.388969
+accuracy: 0.833854
+**** EPOCH 007 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.370894
+accuracy: 0.846650
+**** EPOCH 008 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.356438
+accuracy: 0.849964
+**** EPOCH 009 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.355656
+accuracy: 0.855143
+Model saved in file: log2_dublin/epoch_9.ckpt
+**** EPOCH 010 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.367338
+accuracy: 0.848603
+**** EPOCH 011 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.354261
+accuracy: 0.851897
+**** EPOCH 012 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.353719
+accuracy: 0.853343
+**** EPOCH 013 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.344387
+accuracy: 0.855106
+**** EPOCH 014 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.339851
+accuracy: 0.860235
+**** EPOCH 015 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.331902
+accuracy: 0.858146
+**** EPOCH 016 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.327945
+accuracy: 0.861929
+**** EPOCH 017 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.329060
+accuracy: 0.862611
+**** EPOCH 018 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.316911
+accuracy: 0.868202
+**** EPOCH 019 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.314512
+accuracy: 0.868010
+Model saved in file: log2_dublin/epoch_19.ckpt
+**** EPOCH 020 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.314197
+accuracy: 0.870971
+**** EPOCH 021 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.310807
+accuracy: 0.869824
+**** EPOCH 022 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.294557
+accuracy: 0.876992
+**** EPOCH 023 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.313075
+accuracy: 0.870080
+**** EPOCH 024 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.302129
+accuracy: 0.875381
+**** EPOCH 025 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.284050
+accuracy: 0.881451
+**** EPOCH 026 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.300009
+accuracy: 0.877514
+**** EPOCH 027 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.297980
+accuracy: 0.873900
+**** EPOCH 028 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.291847
+accuracy: 0.877678
+**** EPOCH 029 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.294901
+accuracy: 0.878415
+Model saved in file: log2_dublin/epoch_29.ckpt
+**** EPOCH 030 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.293602
+accuracy: 0.877403
+**** EPOCH 031 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.292313
+accuracy: 0.881104
+**** EPOCH 032 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.281583
+accuracy: 0.879374
+**** EPOCH 033 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.273872
+accuracy: 0.885899
+**** EPOCH 034 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.279851
+accuracy: 0.882293
+**** EPOCH 035 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.280211
+accuracy: 0.880430
+**** EPOCH 036 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.288986
+accuracy: 0.878784
+**** EPOCH 037 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.282657
+accuracy: 0.885576
+**** EPOCH 038 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.274440
+accuracy: 0.883599
+**** EPOCH 039 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.283250
+accuracy: 0.880677
+Model saved in file: log2_dublin/epoch_39.ckpt
+**** EPOCH 040 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.282685
+accuracy: 0.877732
+**** EPOCH 041 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.279096
+accuracy: 0.882308
+**** EPOCH 042 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.272209
+accuracy: 0.887379
+**** EPOCH 043 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.272983
+accuracy: 0.884506
+**** EPOCH 044 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.275901
+accuracy: 0.884332
+**** EPOCH 045 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.280849
+accuracy: 0.883073
+**** EPOCH 046 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.261390
+accuracy: 0.891581
+**** EPOCH 047 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.277009
+accuracy: 0.882157
+**** EPOCH 048 ****
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.266355
+accuracy: 0.890319
+**** EPOCH 049 ****
+/home/aji/.conda/envs/aji/lib/python3.6/site-packages/h5py/__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
+  from ._conv import register_converters as _register_converters
+/home/aji/.conda/envs/aji/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:469: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/home/aji/.conda/envs/aji/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:470: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/home/aji/.conda/envs/aji/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:471: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
+/home/aji/.conda/envs/aji/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:472: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
+/home/aji/.conda/envs/aji/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:473: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
+/home/aji/.conda/envs/aji/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:476: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  np_resource = np.dtype([("resource", np.ubyte, 1)])
+/home/aji/.conda/envs/aji/lib/python3.6/importlib/_bootstrap.py:219: RuntimeWarning: compiletime version 3.5 of module 'tensorflow.python.framework.fast_tensor_util' does not match runtime version 3.6
+  return f(*args, **kwds)
+----
+Current batch/total batch num: 0/824
+Current batch/total batch num: 100/824
+Current batch/total batch num: 200/824
+Current batch/total batch num: 300/824
+Current batch/total batch num: 400/824
+Current batch/total batch num: 500/824
+Current batch/total batch num: 600/824
+Current batch/total batch num: 700/824
+Current batch/total batch num: 800/824
+mean loss: 0.269812
+accuracy: 0.888141
+Model saved in file: log2_dublin/epoch_49.ckpt
