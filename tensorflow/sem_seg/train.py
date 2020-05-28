@@ -73,8 +73,8 @@ HOSTNAME = socket.gethostname()
 #print (len(room_filelist))
 
 print('training with XYZ')
-ALL_FILES = provider.getDataFiles(f'/home/aji/satria/satria/data/dublin_shifted_hdf5_data_4096_uncol/all_files.txt')
-room_filelist = [line.rstrip() for line in open(f'/home/aji/satria/satria/data/dublin_shifted_hdf5_data_4096_uncol/room_filelist.txt')]
+ALL_FILES = provider.getDataFiles(f'/home/aji/satria/satria/data/dublin_shifted_hdf5_data_{NUM_POINT}_uncol/all_files.txt')
+room_filelist = [line.rstrip() for line in open(f'/home/aji/satria/satria/data/dublin_shifted_hdf5_data_{NUM_POINT}_uncol/room_filelist.txt')]
 
 # Load ALL data
 data_batch_list = []
@@ -86,12 +86,11 @@ for h5_filename in ALL_FILES:
 data_batches = np.concatenate(data_batch_list, 0)
 label_batches = np.concatenate(label_batch_list, 0)
 
-
 test_area = 'Area_'+str(FLAGS.test_area)
 train_idxs = []
 test_idxs = []
 for i,room_name in enumerate(room_filelist):
-  if test_area in room_name:
+  if '4393264_20200129' in room_name:
     test_idxs.append(i)
   else:
     train_idxs.append(i)
@@ -100,8 +99,8 @@ train_data = data_batches[train_idxs,...]
 train_label = label_batches[train_idxs]
 test_data = data_batches[test_idxs,...]
 test_label = label_batches[test_idxs]
-print(train_data.shape, train_label.shape)
-print(test_data.shape, test_label.shape)
+print("Train dataset shape: ",train_data.shape, train_label.shape)
+print("Test dataset shape: ",test_data.shape, test_label.shape)
 
 
 def log_string(out_str):
