@@ -17,7 +17,7 @@ pred_data_label_filenames += [line.rstrip() for line in open(file_name)]
 #pred_data_label_filenames += [line.rstrip() for line in open(file_name)]
 
 
-gt_label_filenames = [f.rstrip('_pred.txt') + '_gt.txt' for f in pred_data_label_filenames]
+gt_label_filenames = [f.rstrip('_gt.txt') for f in pred_data_label_filenames]
 
 num_room = len(gt_label_filenames)
 
