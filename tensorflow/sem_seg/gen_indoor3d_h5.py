@@ -36,14 +36,14 @@ H5_BATCH_SIZE = 1000
 label_dim = [NUM_POINT]
 data_dtype = 'float32'
 label_dtype = 'uint8'
-indoor3d_data_dir = '/home/aji/aji-skripsi/data/margonda_3d'
-filelist = os.path.join(BASE_DIR, 'meta/all_data_label.txt')
+indoor3d_data_dir = '/home/aji/aji-skripsi/data/dublin'
+filelist = os.path.join(BASE_DIR, 'meta/all_data_label_dublin.txt')
 data_dim = [NUM_POINT, 6]
 
 
 # Set paths
 data_label_files = [os.path.join(indoor3d_data_dir, line.rstrip()) for line in open(filelist)]
-output_dir = os.path.join(data_dir, f'margonda_hdf5_data_{NUM_POINT}_uncol')
+output_dir = os.path.join(data_dir, f'dublin_hdf5_data_{NUM_POINT}_uncol')
 if not os.path.exists(output_dir):
     os.mkdir(output_dir)
 output_filename_prefix = os.path.join(output_dir, 'ply_data_all')
