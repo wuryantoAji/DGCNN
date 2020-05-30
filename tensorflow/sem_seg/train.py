@@ -73,8 +73,8 @@ HOSTNAME = socket.gethostname()
 #print (len(room_filelist))
 
 print('training with XYZ')
-ALL_FILES = provider.getDataFiles(f'/home/aji-skripsi/data/dublin_hdf5_data_4096_uncol/all_files.txt')
-room_filelist = [line.rstrip() for line in open(f'/home/aji-skripsi/data/dublin_hdf5_data_4096_uncol/room_filelist.txt')]
+ALL_FILES = provider.getDataFiles(f'/home/aji/aji-skripsi/data/dublin_hdf5_data_4096_uncol/all_files.txt')
+room_filelist = [line.rstrip() for line in open(f'/home/aji/aji-skripsi/data/dublin_hdf5_data_4096_uncol/room_filelist.txt')]
 
 # Load ALL data
 data_batch_list = []
