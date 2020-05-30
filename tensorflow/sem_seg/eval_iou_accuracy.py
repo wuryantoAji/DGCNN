@@ -12,15 +12,15 @@ pred_data_label_filenames = []
 
 file_name = 'log{}/output_filelist.txt'.format(FLAGS.area)
 pred_data_label_filenames += [line.rstrip() for line in open(file_name)]
-for i in pred_data_label_filenames:
-    print (i)
+#for i in pred_data_label_filenames:
+#    print (i)
 #file_name = 'log{FLAGS.area}/output_filelist.txt'
 #pred_data_label_filenames += [line.rstrip() for line in open(file_name)]
 
 
 gt_label_filenames = [f.rstrip('_pred\.txt') + '_gt.txt' for f in pred_data_label_filenames]
-for i in gt_label_filenames:
-    print (i)
+#for i in gt_label_filenames:
+#    print (i)
 num_room = len(gt_label_filenames)
 
 gt_classes = [0 for _ in range(2)]
