@@ -1,1 +1,1 @@
-/home/aji/aji-skripsi/data/dublin_shifted/dublin_Area_1.npy
+/home/aji/aji-skripsi/data/dublin/dublin_Area_1.npy
