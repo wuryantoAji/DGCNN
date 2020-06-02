@@ -52,7 +52,7 @@ if FLAGS.jenis == "Margonda":
   with open(f'/home/aji/aji-skripsi/data/margonda{var}3d_Area_{FLAGS.area}.json', 'r') as r:
     MAPPING = json.load(r)
 else:
-  with open(f'/home/aji/aji-skripsi/data/dublin_shifted_Area_{FLAGS.area}.json', 'r') as r:
+  with open(f'/home/aji/aji-skripsi/data/dublin_Area_{FLAGS.area}.json', 'r') as r:
     MAPPING = json.load(r)
 
 def log_string(out_str):
@@ -206,7 +206,8 @@ def eval_one_epoch(sess, ops, room_path, out_data_label_filename, out_gt_label_f
                     fout_data_label.write(f'{real_pts[0]} {real_pts[1]} {real_pts[2]} {color_gt[0]} {color_gt[1]} {color_gt[2]}\n')
                     #fout_data_label.write(f'{real_pts[0]} {real_pts[1]} {real_pts[2]} {pts[i,0]} {pts[i,1]} {pts[i,2]} {pred_val[b,i,pred[i]]} {pred[i]}\n')
 
-                fout_gt_label.write('%d\n' % (l[i]))
+                #fout_gt_label.write('%d\n' % (l[i]))
+                fout_gt_label.write(f'v {real_pts[0]} {real_pts[1]} {real_pts[2]} {color_gt[0]} {color_gt[1]} {color_gt[2]}\n')
         else:
             pass
 
