@@ -7,7 +7,7 @@ for i in range(1,7):
   pred_data_label_filenames += [line.rstrip() for line in open(file_name)]
 
 gt_label_filenames = [f.rstrip('_pred_change_format\.txt') + '_gt_change_format.txt' for f in pred_data_label_filenames]
-print(gt_label_filenames)
+
 num_room = len(gt_label_filenames)
 
 gt_classes = [0 for _ in range(2)]
@@ -16,9 +16,6 @@ true_positive_classes = [0 for _ in range(2)]
 
 for i in range(num_room):
   print(i)
-  print(num_room)
-  print(gt_label_filenames[i])
-  print(pred_data_label_filenames[i])
   data_label = np.loadtxt(pred_data_label_filenames[i])
   pred_label = data_label[:,-1]
   gt_label = np.loadtxt(gt_label_filenames[i])
