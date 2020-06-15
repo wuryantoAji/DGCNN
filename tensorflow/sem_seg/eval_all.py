@@ -6,7 +6,7 @@ for i in range(1,7):
   file_name = 'log{}_dublin_notShifted/output_filelist_RGBFormat.txt'.format(i)
   pred_data_label_filenames += [line.rstrip() for line in open(file_name)]
 
-gt_label_filenames = [f.rstrip('_pred_change_format\.txt') + '_gt_change_format.txt' for f in pred_data_label_filenames]
+gt_label_filenames = [f.rstrip('_pred_change_format\.txt') + '_gt_thereal_change_format.txt' for f in pred_data_label_filenames]
 
 num_room = len(gt_label_filenames)
 
@@ -18,7 +18,6 @@ for i in range(num_room):
   print(i)
   data_label = np.loadtxt(pred_data_label_filenames[i])
   pred_label = data_label[:,-1]
-  print(gt_label_filenames[i])
   gt_label = np.loadtxt(gt_label_filenames[i])
   print(gt_label.shape)
   for j in range(gt_label.shape[0]):
