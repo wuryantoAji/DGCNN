@@ -16,6 +16,9 @@ true_positive_classes = [0 for _ in range(2)]
 
 for i in range(num_room):
   print(i)
+  print(num_room)
+  print(gt_label_filenames[i])
+  print(pred_data_label_filenames[i])
   data_label = np.loadtxt(pred_data_label_filenames[i])
   pred_label = data_label[:,-1]
   gt_label = np.loadtxt(gt_label_filenames[i])
