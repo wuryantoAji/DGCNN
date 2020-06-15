@@ -6,7 +6,7 @@ parser.add_argument('--area', type=int, default=1, help='area to eval 1-6')
 FLAGS = parser.parse_args()
 
 pred_data_label_filenames = []
-file_name = 'log{}_dublin_notShifted/output_filelist_RGBFormat.txt'.format(FLAGS.area)
+file_name = 'log{}_dublin_notShifted/output_filelist_real_RGBFormat.txt'.format(FLAGS.area)
 pred_data_label_filenames += [line.rstrip() for line in open(file_name)]
 
 gt_label_filenames = [f.rstrip('_pred_change_format\.txt') + '_gt_thereal_change_format.txt' for f in pred_data_label_filenames]
