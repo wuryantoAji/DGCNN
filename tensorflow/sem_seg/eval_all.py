@@ -18,6 +18,7 @@ for i in range(num_room):
   print(i)
   data_label = np.loadtxt(pred_data_label_filenames[i])
   pred_label = data_label[:,-1]
+  print(gt_label_filenames[i])
   gt_label = np.loadtxt(gt_label_filenames[i])
   print(gt_label.shape)
   for j in range(gt_label.shape[0]):
