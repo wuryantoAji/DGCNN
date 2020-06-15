@@ -7,7 +7,7 @@ for i in range(1,7):
   pred_data_label_filenames += [line.rstrip() for line in open(file_name)]
 
 gt_label_filenames = [f.rstrip('_pred_change_format\.txt') + '_gt_change_format.txt' for f in pred_data_label_filenames]
-
+print(gt_label_filenames)
 num_room = len(gt_label_filenames)
 
 gt_classes = [0 for _ in range(2)]
