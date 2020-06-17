@@ -95,7 +95,7 @@ def evaluate():
     out_data_label_filename = os.path.basename(room_path)[:-4] + '_pred_change_format.txt'
     #out_data_label_filename = os.path.basename(room_path)[:-4] + '_pred.txt'
     out_data_label_filename = os.path.join(DUMP_DIR, out_data_label_filename)
-    out_gt_label_filename = os.path.basename(room_path)[:-4] + '_gt_thereal_change_format.txt'
+    out_gt_label_filename = os.path.basename(room_path)[:-4] + '_gt_the_change_format.txt'
     #out_gt_label_filename = os.path.basename(room_path)[:-4] + '_gt.txt'
     out_gt_label_filename = os.path.join(DUMP_DIR, out_gt_label_filename)
    
@@ -210,7 +210,7 @@ def eval_one_epoch(sess, ops, room_path, out_data_label_filename, out_gt_label_f
           fout_data_label.write(f'{real_pts[0]} {real_pts[1]} {real_pts[2]} {color_gt[0]} {color_gt[1]} {color_gt[2]}\n')
 
         #fout_gt_label.write(f'v {real_pts[0]} {real_pts[1]} {real_pts[2]} {color_gt[0]} {color_gt[1]} {color_gt[2]}\n')
-        fout_gt_label.write('%d\n' % (l[i]))
+        fout_gt_label.write(f'v {real_pts[0]} {real_pts[1]} {real_pts[2]} {color_gt[0]} {color_gt[1]} {color_gt[2]}\n')
 
     correct = np.sum(pred_label == current_label[start_idx:end_idx,:])
     total_correct += correct
