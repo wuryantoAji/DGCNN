@@ -200,14 +200,14 @@ def eval_one_epoch(sess, ops, room_path, out_data_label_filename, out_gt_label_f
                 
                 
                 if RGB:
-                    #fout_data_label.write(f'{real_pts[0]} {real_pts[1]} {real_pts[2]} {pts[i,3]} {pts[i,4]} {pts[i,5]} {pred_val[b,i,pred[i]]} {pred[i]}\n')
-                    fout_data_label.write(f'{real_pts[0]} {real_pts[1]} {real_pts[2]} {color_gt[0]} {color_gt[1]} {color_gt[2]}\n')
+                    fout_data_label.write(f'{real_pts[0]} {real_pts[1]} {real_pts[2]} {pts[i,3]} {pts[i,4]} {pts[i,5]} {pred_val[b,i,pred[i]]} {pred[i]}\n')
+                    #fout_data_label.write(f'{real_pts[0]} {real_pts[1]} {real_pts[2]} {color_gt[0]} {color_gt[1]} {color_gt[2]}\n')
                 else:
-                    fout_data_label.write(f'{real_pts[0]} {real_pts[1]} {real_pts[2]} {color_gt[0]} {color_gt[1]} {color_gt[2]}\n')
-                    #fout_data_label.write(f'{real_pts[0]} {real_pts[1]} {real_pts[2]} {pts[i,0]} {pts[i,1]} {pts[i,2]} {pred_val[b,i,pred[i]]} {pred[i]}\n')
+                    #fout_data_label.write(f'{real_pts[0]} {real_pts[1]} {real_pts[2]} {color_gt[0]} {color_gt[1]} {color_gt[2]}\n')
+                    fout_data_label.write(f'{real_pts[0]} {real_pts[1]} {real_pts[2]} {pts[i,0]} {pts[i,1]} {pts[i,2]} {pred_val[b,i,pred[i]]} {pred[i]}\n')
 
-                #fout_gt_label.write('%d\n' % (l[i]))
-                fout_gt_label.write(f'v {real_pts[0]} {real_pts[1]} {real_pts[2]} {color_gt[0]} {color_gt[1]} {color_gt[2]}\n')
+                fout_gt_label.write('%d\n' % (l[i]))
+                #fout_gt_label.write(f'v {real_pts[0]} {real_pts[1]} {real_pts[2]} {color_gt[0]} {color_gt[1]} {color_gt[2]}\n')
         else:
             pass
 
