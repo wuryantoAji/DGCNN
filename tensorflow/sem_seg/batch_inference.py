@@ -198,8 +198,8 @@ def eval_one_epoch(sess, ops, room_path, out_data_label_filename, out_gt_label_f
             # fout_gt.write('v %f %f %f %d %d %d\n' % (pts[i, 3], pts[i, 4], pts[i, 5], color_gt[0], color_gt[1], color_gt[2]))
             pass
         
-          fout.write(f'{real_pts[0]} {real_pts[1]} {real_pts[2]} {color[0]} {color[1]} {color[2]}\n')
-          fout_gt.write(f'{real_pts[0]} {real_pts[1]} {real_pts[2]} {color_gt[0]} {color_gt[1]} {color_gt[2]}\n')
+          fout.write(f'v {real_pts[0]} {real_pts[1]} {real_pts[2]} {color[0]} {color[1]} {color[2]}\n')
+          fout_gt.write(f'v {real_pts[0]} {real_pts[1]} {real_pts[2]} {color_gt[0]} {color_gt[1]} {color_gt[2]}\n')
         
         
         if RGB:
