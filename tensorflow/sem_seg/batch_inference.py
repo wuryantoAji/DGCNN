@@ -92,10 +92,10 @@ def evaluate():
   total_seen = 0
   fout_out_filelist = open(FLAGS.output_filelist, 'w')
   for room_path in ROOM_PATH_LIST:
-    out_data_label_filename = os.path.basename(room_path)[:-4] + '_pred_change_format.txt'
+    out_data_label_filename = os.path.basename(room_path)[:-4] + '_pred.txt'
     #out_data_label_filename = os.path.basename(room_path)[:-4] + '_pred.txt'
     out_data_label_filename = os.path.join(DUMP_DIR, out_data_label_filename)
-    out_gt_label_filename = os.path.basename(room_path)[:-4] + '_gt_the_change_format.txt'
+    out_gt_label_filename = os.path.basename(room_path)[:-4] + '_gt.txt'
     #out_gt_label_filename = os.path.basename(room_path)[:-4] + '_gt.txt'
     out_gt_label_filename = os.path.join(DUMP_DIR, out_gt_label_filename)
    
@@ -120,9 +120,9 @@ def eval_one_epoch(sess, ops, room_path, out_data_label_filename, out_gt_label_f
   if FLAGS.visu:
     print("entering visu ")
     #fout = open(os.path.join(DUMP_DIR, os.path.basename(room_path)[:-4]+'_pred.obj'), 'w')
-    fout = open(os.path.join(DUMP_DIR, os.path.basename(room_path)[:-4]+'_pred_change_format.obj'), 'w')
+    fout = open(os.path.join(DUMP_DIR, os.path.basename(room_path)[:-4]+'_pred.obj'), 'w')
     #fout_gt = open(os.path.join(DUMP_DIR, os.path.basename(room_path)[:-4]+'_gt.obj'), 'w')
-    fout_gt = open(os.path.join(DUMP_DIR, os.path.basename(room_path)[:-4]+'_gt_change_format.obj'), 'w')
+    fout_gt = open(os.path.join(DUMP_DIR, os.path.basename(room_path)[:-4]+'_gt.obj'), 'w')
     fout_real_color = open(os.path.join(DUMP_DIR, os.path.basename(room_path)[:-4]+'_real_color.obj'), 'w')
   fout_data_label = open(out_data_label_filename, 'w')
   fout_gt_label = open(out_gt_label_filename, 'w')
@@ -198,8 +198,8 @@ def eval_one_epoch(sess, ops, room_path, out_data_label_filename, out_gt_label_f
             # fout_gt.write('v %f %f %f %d %d %d\n' % (pts[i, 3], pts[i, 4], pts[i, 5], color_gt[0], color_gt[1], color_gt[2]))
             pass
         
-          fout.write(f'v {real_pts[0]} {real_pts[1]} {real_pts[2]} {color[0]} {color[1]} {color[2]}\n')
-          fout_gt.write(f'v {real_pts[0]} {real_pts[1]} {real_pts[2]} {color_gt[0]} {color_gt[1]} {color_gt[2]}\n')
+          fout.write(f'{real_pts[0]} {real_pts[1]} {real_pts[2]} {color[0]} {color[1]} {color[2]}\n')
+          fout_gt.write(f'{real_pts[0]} {real_pts[1]} {real_pts[2]} {color_gt[0]} {color_gt[1]} {color_gt[2]}\n')
         
         
         if RGB:
@@ -210,7 +210,7 @@ def eval_one_epoch(sess, ops, room_path, out_data_label_filename, out_gt_label_f
           fout_data_label.write(f'{real_pts[0]} {real_pts[1]} {real_pts[2]} {color_gt[0]} {color_gt[1]} {color_gt[2]}\n')
 
         #fout_gt_label.write(f'v {real_pts[0]} {real_pts[1]} {real_pts[2]} {color_gt[0]} {color_gt[1]} {color_gt[2]}\n')
-        fout_gt_label.write(f'v {real_pts[0]} {real_pts[1]} {real_pts[2]} {color_gt[0]} {color_gt[1]} {color_gt[2]}\n')
+        fout_gt_label.write(f'{real_pts[0]} {real_pts[1]} {real_pts[2]} {color_gt[0]} {color_gt[1]} {color_gt[2]}\n')
 
     correct = np.sum(pred_label == current_label[start_idx:end_idx,:])
     total_correct += correct

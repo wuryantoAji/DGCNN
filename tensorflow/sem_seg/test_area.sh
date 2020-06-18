@@ -1,0 +1,2 @@
+CUDA_VISIBLE_DEVICES=2 python3 batch_inference.py --model_path log1/epoch_49.ckpt --dump_dir log1/prediction --output_filelist log1/prediction_all.txt --room_data_filelist meta/area1_data_label_margonda.txt --area 1 --visu  
+CUDA_VISIBLE_DEVICES=2 python3 batch_inference_build_only.py --model_path log1/epoch_49.ckpt --dump_dir log1/prediction --output_filelist log1/prediction_build_only.txt --room_data_filelist meta/area1_data_label_margonda.txt --area 1 --visu  

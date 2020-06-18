@@ -92,10 +92,10 @@ def evaluate():
   total_seen = 0
   fout_out_filelist = open(FLAGS.output_filelist, 'w')
   for room_path in ROOM_PATH_LIST:
-    out_data_label_filename = os.path.basename(room_path)[:-4] + '_build_only_pred_change_format.txt'
+    out_data_label_filename = os.path.basename(room_path)[:-4] + '_build_only_pred.txt'
     #out_data_label_filename = os.path.basename(room_path)[:-4] + '_build_only_pred.txt'
     out_data_label_filename = os.path.join(DUMP_DIR, out_data_label_filename)
-    out_gt_label_filename = os.path.basename(room_path)[:-4] + '_build_only_gt_change_format.txt'
+    out_gt_label_filename = os.path.basename(room_path)[:-4] + '_build_only_gt.txt'
     #out_gt_label_filename = os.path.basename(room_path)[:-4] + '_build_only_gt.txt'
     out_gt_label_filename = os.path.join(DUMP_DIR, out_gt_label_filename)
    
