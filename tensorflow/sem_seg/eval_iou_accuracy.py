@@ -6,7 +6,7 @@ parser.add_argument('--area', type=int, default=1, help='area to eval 1-6')
 FLAGS = parser.parse_args()
 
 pred_data_label_filenames = []
-file_name = 'log{}/prediction_all.txt'.format(FLAGS.area)
+file_name = 'log{}_dublin_notShifted/prediction_all.txt'.format(FLAGS.area)
 pred_data_label_filenames += [line.rstrip() for line in open(file_name)]
 
 gt_label_filenames = [f.rstrip('_pred\.txt') + '_gt.txt' for f in pred_data_label_filenames]

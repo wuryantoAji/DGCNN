@@ -3,7 +3,7 @@ import argparse
 
 pred_data_label_filenames = []
 for i in range(1,7):
-  file_name = 'log{}/prediction_all.txt'.format(i)
+  file_name = 'log{}_dublin_notShifted/prediction_all.txt'.format(FLAGS.area)
   pred_data_label_filenames += [line.rstrip() for line in open(file_name)]
 
 gt_label_filenames = [f.rstrip('_pred\.txt') + '_gt.txt' for f in pred_data_label_filenames]
